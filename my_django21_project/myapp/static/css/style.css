@@ -1,0 +1,97 @@
+body {	
+    margin: 0;
+    color: #333;
+    font: 16px "Roboto", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;    
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+	font-style:italic;
+}
+
+body > header {
+    position: relative;    
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 50px;
+    margin-top: 30px;
+}
+
+body > header:after {
+    content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+h1, h2, h3 {
+    font: 300 16px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;   
+    text-transform: uppercase;
+    font-size: 1.2em;	
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2{
+	color: white;
+    background-color: #39B;
+	text-align: center;
+    padding: 7px 0;
+    margin-bottom: 3px;
+}
+
+main {    
+    width: 60%;   
+    margin: 0 auto;
+}
+	
+div.offer {
+	margin-top: 40px;
+}
+
+.offer > p, .offer > a{
+	padding-left:20px;
+}
+
+#scraper {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -26px;
+    border: 2px solid whitesmoke;
+    border-right: 0;
+    padding: 0 10px;
+}
+
+footer {
+	margin-bottom: 40px;
+}
+
+/*================================================
+Start link underline
+==================================================*/
+
+.underline--magical {
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.2em;
+  background-position: 0 88%;
+  transition: background-size 0.3s ease-in;
+}
+.underline--magical:hover {
+    background-size: 100% 100%;
+  }
+
+/*================================================
+End link underline
+==================================================*/
