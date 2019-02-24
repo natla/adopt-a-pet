@@ -1,29 +1,39 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    <meta charset="utf-8">
-    <title>Real Python Django tutorial</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    
-    <!-- Le styles -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <script src="//code.jquery.com/jquery-1.10.1.min.js" type="text/javascript"></script>
-    </head>
-    
-    <body>
-    
-    <div class="container">
-      {% load markdown_deux_tags %}   
-      {% markdown %}
-      {% markdown_cheatsheet %}
-      {% endmarkdown %}
-    </div> <!-- /container -->
-    </body>
+<head>
+    <title>Adopt a Pet</title>
+    <meta charset="utf-8"/>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,100' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}">
+</head>
+<body>
+<header>
+    <h1>Adopt a Pet</h1>
+	<div id="scraper">
+	    <p>Sofia, Bulgaria</p>
+	</div>
+</header>
+<main>
+    {% for offer in offers %}
+    {% for key, value in offer.items %}
+    <div class="offer">
+        <h2>{{ key }}</h2>
+        {% for i in value %}
+        {% if "http" in i %}
+        <a class="underline--magical" href="{{ i }}"> {{ i }} </a>
+        {% else %}
+        <p> {{ i }} </p>
+		{% endif %}
+        {% endfor %}
+    </div>
+    {% endfor %}
+    {% endfor %}
+</main>
+<footer>
+    <div></div>
+</footer>
+</body>
 </html>
