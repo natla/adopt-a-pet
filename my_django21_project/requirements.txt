@@ -1,0 +1,8 @@
+Django==2.1.7
+django-markdown-deux==1.0.5
+markdown2==2.3.7
+mysql-connector-python==8.0.15
+protobuf==3.6.1
+PyMySQL==0.9.3
+pytz==2018.9
+six==1.12.0
