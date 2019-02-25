@@ -1,0 +1,39 @@
+{% extends "blog/master.html" %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<body>
+<div class="content-outer">
+<div class="content-inner">
+<div class="main-inner">
+	{% block content %}
+    <h3 class="post-title">
+        Doki Doki
+    </h3>
+    <div class="post-body">
+
+        <img id="contact" src="{% static 'images/sims/Screenshot-28.jpg' %}">
+
+        <div class="center link-boxes">
+            <a class="jeonjin" href="{% url 'myapp:post_detail_view' post='elf-family' %}">ELF Family</a>
+            <a class="jeonjin" href="{% url 'myapp:post_detail_view' post='innocence-elf' %}">Wood Elf</a>
+            <a class="jeonjin" href="{% url 'myapp:post_detail_view' post='la-fille-de-moustache' %}">Porcelain</a>
+            <a class="jeonjin" href="{% url 'myapp:post_detail_view' post='four-girls-monstre-orphanage' %}">Monstre Girls</a>
+            <br>
+            <a class="jeonjin" href="#">Mnstr Shoppe</a>
+            <a class="jeonjin" href="#">Orphanage</a>
+            <a class="jeonjin" href="#">Furry Friends</a>
+            <a class="jeonjin" href="#">Crst Orchard</a>
+            <br>
+            <a class="jeonjin" href="#">Coffee House</a>
+            <a class="jeonjin" href="#">Scrt Grove</a>
+            <a class="jeonjin" href="#">Rivulet</a>
+            <a class="jeonjin" href="#">Bus Station</a>
+        </div>
+    </div>
+	{% endblock %}
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -2,8 +2,8 @@
 """
 
 import unittest
-from adoption_center import AdoptionCenterFactory
-from animal import Animal, Dog, Cat
+from .adoption_center import AdoptionCenterFactory
+from .animal import Animal, Dog, Cat
 
 
 class TestAdoptionService(unittest.TestCase):
@@ -60,7 +60,7 @@ class TestAdoptionService(unittest.TestCase):
     def test_eat_method(self):
         """ Test the eat method of the animal instances
         """
-        self.assertEqual("I like to eat bones.", self.sharo.eat("bones"))
+        self.assertEqual("I like to eat bones.", self.sharo.eat("error"))
         self.assertEqual("I like to eat fish.", self.ruh.eat("fish"))
         self.assertEqual("I like to eat chicken soup.", self.tiger.eat("chicken soup"))
 

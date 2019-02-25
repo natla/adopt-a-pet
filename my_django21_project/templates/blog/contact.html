@@ -1,0 +1,33 @@
+{% extends "blog/master.html" %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<body>
+
+<div class="content-outer">
+<div class="content-inner">
+<div class="main-inner">
+	{% block content %}
+    <h3 class="post-title">
+        The Storyteller
+    </h3>
+    <div class="post-body">
+
+        <img id="contact" src="{% static 'images/sims/Dagmar-Elf2.jpg' %}">
+
+        <p class="tr-caption"><a href="https://twitter.com/DagmarEberhardt" target="_blank">twitter</a> ||
+
+            <a href="http://www.flickr.com/photos/dagmar_eberhardt/" target="_blank">flickr</a> ||</p>
+
+        <p><img id="icon" src="{% static 'images/tumblr_meb720XdFt1qdlkyg.gif' %}" width="15px"> Hello. My name is Natalia Malkovska. I
+            love walks in the woods, toadstools, vintage birdcages and mori girl frocks. </p>
+        <br>
+        <div style="text-align: right;">
+            <img id="icon" src="{% static 'images/tumblr_mdpf63YzfD1qdlkyg.gif' %}" width="15px"> <i>Kisses : Nat</i></div>
+    </div>
+	{% endblock %}
+</div>
+</div>
+</div>
+</body>
+</html>

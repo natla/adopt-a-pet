@@ -13,24 +13,49 @@
 <header>
     <h1>Adopt a Pet</h1>
 	<div id="scraper">
-	    <p>Sofia, Bulgaria</p>
+	    <p>Animal Rescue</p>
 	</div>
 </header>
 <main>
-    {% for offer in offers %}
-    {% for key, value in offer.items %}
     <div class="offer">
-        <h2>{{ key }}</h2>
-        {% for i in value %}
-        {% if "http" in i %}
-        <a class="underline--magical" href="{{ i }}"> {{ i }} </a>
-        {% else %}
-        <p> {{ i }} </p>
-		{% endif %}
-        {% endfor %}
+	
+        <h2>Choose a Pet</h2>
+        <a class="underline--magical" href="{{ i }}">  </a>
+        <p>  </p>
+		
     </div>
-    {% endfor %}
-    {% endfor %}
+        {% block content %}
+                <form name="contact" method="post" action="">
+					{% csrf_token %}
+                    <fieldset class="contact-form">
+                        <p><label for="{{ form.pet.id_for_label }}"> {{ form.pet.help_text }} </label><br />
+						{{ form.pet.choices }}
+						{% for choice in form.pet.choices %}
+						<input type="select" name="{{ form.pet.id_for_label }}" value="{{ choice }}"> {{ choice }} <br>
+						<input type="select" name="{{ form.pet.id_for_label }}" value="{{ choice }}"> {{ choice }} <br>
+						{% endfor %}
+                        
+						</p>
+						<p>
+                        <label for="{{ form.pet_breed.id_for_label }}">{{ form.pet_breed.help_text  }}</label><br />
+												{{ form.pet_breed}}
+						</p>
+                        <p><label for="{{ form.pet_gender.id_for_label }}"> {{ form.pet_gender.help_text  }}</label>
+						{{ form.pet_gender.widget }}
+						</p>
+						<p></p>
+						<p></p>
+						<p><label for="form.pet_age.id_for_label">{{ form.pet_age.help_text  }}</label></p>
+						{{ form.pet_age }}
+						<p></p>
+
+                        
+                    </fieldset>
+                    <button class="btn btn-form">Send
+					</button>					
+                </form>
+		{% endblock %}
+
 </main>
 <footer>
     <div></div>

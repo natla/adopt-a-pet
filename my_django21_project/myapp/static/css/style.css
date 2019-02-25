@@ -95,3 +95,85 @@ Start link underline
 /*================================================
 End link underline
 ==================================================*/
+
+
+/* Contact Form
+.....................*/
+
+form {
+  margin-bottom: 22px;
+}
+input,
+textarea {
+  font: 300 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.contact-form label {
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.contact-form input,
+.contact-form textarea{
+  border: 1px solid #c6c9cc;
+  border-radius: 5px;
+  color: #555;
+  display: block;
+  margin: 5px 0 24px 0;
+  padding: 5px 8px;
+}
+.contact-form {
+	border: 0;
+}
+.contact-form input,
+.contact-form textarea,
+.contact-form p {
+  width: 100%;
+}
+.contact-form textarea {
+  height: 100px;
+  resize: vertical;
+  overflow: hidden;
+}
+
+/* Buttons
+.................*/
+
+.btn{
+	border-radius: 5px;
+	display: inline-block;
+	margin: 0;
+	color: #fff;
+    cursor: pointer;
+	font-weight: 400;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+}
+
+.btn-default, .btn-form {
+  border: 0;
+  background-color: #ea4c4c;
+  padding: 9px 30px;
+  font-size: 14px;
+}
+.btn-default:hover {
+  background-color: #77a198;
+}
+
+.btn-form {
+	position: relative;
+	border: 1px solid #fff;
+}
+
+
+.btn-form {
+	-moz-transition: all 400ms cubic-bezier(.165,.84,.44,1);
+    -o-transition: all 400ms cubic-bezier(.165,.84,.44,1);
+    -webkit-transition: all 400ms cubic-bezier(.165,.84,.44,1);
+	transition: all 400ms cubic-bezier(.165,.84,.44,1);
+}
+
+.btn-form:hover {
+  border: 1px solid #ea4c4c;
+  background-color: #fff;
+  color: #ea4c4c;
+}

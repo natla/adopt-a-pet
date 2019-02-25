@@ -1,0 +1,9 @@
+{% extends "blog/master.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <h3 class="post-title">{{ post.title }}</h3>
+    <p>{{ post.body|safe }}</p>
+	<p class="post-footer">Published {{ post.publish }} by {{ post.author }}</p>
+{% endblock %}

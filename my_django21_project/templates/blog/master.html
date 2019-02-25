@@ -1,0 +1,180 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,400italic,300italic,300' rel='stylesheet'
+          type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Slab:300,400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=The+Girl+Next+Door' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Ruthie' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Meddon' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Rouge+Script' rel='stylesheet' type='text/css'>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/stylesheet.css' %}"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}">
+</head>
+<body>
+<header class="center clearfix">
+    <nav>
+        <a class="button" href="{% url 'blog_home' %}" title="That happened last">
+            &#8880;Home&#8881;
+        </a>
+        <a class="button1" href="?page=1" title="The story starts here">
+            &#8880;Begin&#8881;
+        </a>
+        <a class="button" href="{% url 'sim_bios' %}" title="Meet the characters || Explore the places">
+            &#8880;Bios&#8881;
+        </a>
+        <a class="button1" href="{% url 'blog_contact' %}" title="That is, the author">
+            &#8880;Moi&#8881;
+        </a>
+    </nav>
+
+    <h1 class="title">
+        Symphony Garden
+    </h1>
+</header>
+
+<div class="content-outer">
+    <div class="content-inner">
+
+        <aside>
+            <div class="sidebar center">
+                <h2 class="title">
+                    Bonjour!
+                </h2>
+
+                <a href="{% url 'blog_home' %}">
+                    <img src="{% static 'images/sg-sidebar-banner3.png' %}"
+                         width="260" height="260">
+                </a>
+                <p>
+                    Hello and welcome to the <br>
+                    Symphony Garden,<br>
+                    a story about a girl and her friends.
+                </p>
+            </div>
+
+            <div class="sidebar">
+                <h2 class="title">
+                    Follow Story by Email
+                </h2>
+                <form action="https://feedburner.google.com/fb/a/mailverify" method="post"
+                      onsubmit="window.open(&quot;https://feedburner.google.com/fb/a/mailverify?uri=blogspot/lWhAb&quot;, &quot;popupwindow&quot;, &quot;scrollbars=yes,width=550,height=520&quot;); return true"
+                      target="popupwindow">
+                    <table width="100%">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <input class="follow-by-email-address" name="email"
+                                       placeholder="Email address..." type="text">
+                            </td>
+                            <td width="64px">
+                                <input class="follow-by-email-submit" type="submit" value="Submit">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+
+            <div class="sidebar">
+                <h2>
+                    Chapters
+                </h2>
+                <ul class="aside-list">
+                    <li>
+                        <a dir="ltr" href="https://symphony-garden.blogspot.com/search/label/Monstre%20Shoppe">
+                            Monstre Shoppe
+                        </a>
+                        <span dir="ltr">( 2 )</span>
+                    </li>
+                    <li>
+                        <a dir="ltr" href="https://symphony-garden.blogspot.com/search/label/The%20Elfs">
+                            The Elfs
+                        </a>
+                        <span dir="ltr">( 2 )</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar">
+                <h2 class="title">
+                    Get in Touch
+                </h2>
+
+                <div class="box2 center">
+                    <h01>&#8880;HOVER ME!&#8881;</h01>
+                    <p>
+                        How are you?<br>Feel free to share your thoughts
+                    </p>
+                </div>
+
+                <div id="comment-box">
+                    <form name="ask" method="post" action="welcome.php">
+                        <div>
+                            <input id="name" type="text" name="name" placeholder="Name" required/>
+                        </div>
+                        <div>
+                            <input id="email" type="email" name="email" placeholder="name@domain.com" required/>
+                        </div>
+                        <div>
+                            <textarea id="form-message" name="questions"
+                                      placeholder="Enter your thoughts here"></textarea>
+                        </div>
+                        <div>
+                            <input id="send" type="submit" value="Send"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="center">
+                <img src="{% static 'images/vintage-brush.jpg' %}">
+                <center>Symphony Garden</center>
+                <img id="vintage-lower" src="{% static 'images/vintage-brush1.jpg' %}">
+            </div>
+
+        </aside>
+
+        <div class="main-inner">
+            {% block content %}
+
+            {% endblock %}
+
+<!--             <div class="post-footer">
+                <span class="post-comment-link">
+                    <a class="comment-link" href="#comment-box" onclick="">
+                        Share your thoughts
+                    </a>
+                </span>
+                <span class="post-labels">
+                    Labels:
+                        <a href="https://symphony-garden.blogspot.com/search/label/The%20Elfs" rel="tag">
+                            The Elfs
+                        </a>
+                </span>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+<footer class="center">
+    <div id="credits">
+        Based on a template by
+        <a href="https://www.blogskins.com/me/yeolochuu-x" target="_blank">
+            Pika Chan
+        </a>. Modified by
+        <a href="https://natla.github.io/portfolio/">
+            Natalia Malkovska
+        </a>. All rights reserved <span class="date">2018</span> © Natalia Malkovska.
+    </div>
+</footer>
+</div>
+<script src="{% static 'scripts/main.js' %}"></script>
+</body>
+</html>
