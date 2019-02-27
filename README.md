@@ -20,5 +20,5 @@ The app can be used by Animal Rescue centers, to match a person willing to adopt
 
 # TO DO:
 - TO DO: Get the available animals for adoption from a database (e.g. SQLite).
-- TO DO 2: Add a mechanism to get input from the user.
+- TO DO 2: Add a mechanism to get input from the user (e.g. filling in a form).
 - TO DO 3: The user can subscribe to changes in the Pool so that he/she is contacted whenever a suitable animal is added to the database.
