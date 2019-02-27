@@ -4,8 +4,7 @@
 # A list of dog breeds that are available in the adoption center.
 DOG_BREED = ["bulldog", "german shepherd", "labrador", "poodle", "goldren retriever", "chihuahua", "pug", "beagle",
              "dachshund", "yorkshire terrier", "bull terrier", "husky", "doberman", "rottweiler", "chow chow",
-             "mastiff",
-             "collie", "greyhound", "corgi", "dalmatian", "cocker spaniel", "unbred"]
+             "mastiff", "collie", "greyhound", "corgi", "dalmatian", "cocker spaniel", "unbred"]
 
 # A list of cat breeds that are available in the adoption center.
 CAT_BREED = ["russian blue", "persian", "british shorthair", "munchkin", "siamese", "sphynx", "savannah", "ragamuffin",

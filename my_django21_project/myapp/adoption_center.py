@@ -25,8 +25,10 @@ class AdoptionCenterFactory:
         """
         for animal in self.adoption_pool:
             if animal.breed == breed and animal.age == age and animal.gender == gender:
-                message = "You adopted a {} named {} that is {} years old and a {}.".format(str(animal), animal.name,
-                                                               animal.age, 'boy' if animal.gender == 'M' else 'girl')
+                message = "You adopted a {} named {} that is {} years old and a {}." \
+                    .format(str(animal), animal.name,
+                            animal.age,
+                            'boy' if animal.gender == 'M' else 'girl')
                 # Remove the animal from the pool once it has been adopted
                 self.adoption_pool.remove(animal)
                 return message, animal
@@ -53,9 +55,12 @@ class AdoptionCenterFactory:
         :return: An animal object with random breed, age and gender.
         """
         lucky_animal = random.choice(self.adoption_pool)  # or random.randint(the index of the animal from the pool)
-        message = "You adopted a {} named {} that is {} years old and a {}.".format(str(lucky_animal), lucky_animal.name,
-                                              lucky_animal.age, 'boy' if lucky_animal.gender == 'M' else 'girl')
+        message = "You adopted a {} named {} that is {} years old and a {}." \
+            .format(str(lucky_animal),
+                    lucky_animal.name,
+                    lucky_animal.age,
+                    'boy' if lucky_animal.gender == 'M'
+                    else 'girl')
         # Remove the animal from the pool once it has been adopted
         self.adoption_pool.remove(lucky_animal)
         return message, lucky_animal
-
