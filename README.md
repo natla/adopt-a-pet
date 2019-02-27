@@ -1,4 +1,4 @@
-# Pet Adoption Application
+# Pet Adoption Application (Django version WIP)
 
 An application allowing the user to adopt animals (dogs and cats) from an Adoption Center.
 
