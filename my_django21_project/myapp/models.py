@@ -1,44 +1,59 @@
 from django.db import models
-from django.utils import timezone
-from django.contrib.auth.models import User
-from django.urls import reverse
-from tinymce.models import HTMLField
+
+# A tuple of binary animal genders
+GENDER = ("M", "F")
 
 
-# Custom Manager
-class PublishedManager(models.Manager):
-    def get_queryset(self):
-        return super(PublishedManager, self).get_queryset().filter(status='published')
+class Pet(models.Model):
+    """
+    Pet Model
+    Defines the attributes of a pet
+    """
+    species = models.CharField(max_length=255, default="Dog")
+    name = models.CharField(max_length=255)
+    breed = models.CharField(max_length=255)
+    gender = models.CharField(max_length=255)
+    age = models.IntegerField()
 
+    def get_name(self):
+        """ Get the name of the pet. """
+        return self.name
 
-# Post Model
-class Post(models.Model):
-    STATUS_CHOICES = (
-        ('draft', 'Draft'),
-        ('published', 'Published'),
-    )
-    title = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250, unique_for_date='publish')
-    author = models.ForeignKey(User, related_name='blog_posts', on_delete=models.PROTECT)
-    body = HTMLField()
-    publish = models.DateTimeField(default=timezone.now)
-    created_date = models.DateTimeField(auto_now_add=True)
-    updated_date = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    def get_breed(self):
+        """ Get the breed of the pet. """
+        return self.breed.lower()
 
-    # The default manager
-    objects = models.Manager()
+    def get_age(self):
+        """ Get the age of the pet. """
+        return self.age
 
-    # Custom made manager
-    published = PublishedManager()
+    def get_gender(self):
+        """ Get the gender of the pet: M, F or Other. """
+        self.gender = self.gender.capitalize()[0]
+        if self.gender not in GENDER:
+            self.gender = 'Other'
+        return self.gender
 
-    class Meta:
-        """Order the records by publish date, starting from the newest."""
-        ordering = ('-publish',)
+    # This method is not being used yet in the adoption process but it adds pet personality.
+    @staticmethod
+    def eat(fav_food):
+        """ What is the pet's favorite food?
 
-    def __str__(self):
-        return self.title
+        :param fav_food: my favorite food
+        :return: I like to eat {fav_food}
+        """
+        return "I like to eat {}.".format(fav_food)
 
-    def get_absolute_url(self):
-        """Returns the url to access a particular instance of the model."""
-        return reverse('myapp:post_detail_view', args=[self.slug])
+    def __repr__(self):
+        """ User-friendly representation of the pet object. Will be invoked by repr(object)."""
+        if self.get_gender() is not 'Other':
+            return "{} named {} that is {} and a {}" \
+                .format(self.breed.capitalize(),
+                        self.name,
+                        str(self.age) + " years old",
+                        'boy' if self.get_gender() == 'M' else 'girl')
+        else:
+            return "{} named {} that is {}" \
+                .format(self.breed.capitalize(),
+                        self.name,
+                        str(self.age) + " years old")

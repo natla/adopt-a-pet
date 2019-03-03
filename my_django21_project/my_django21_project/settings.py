@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'q6_&3$*#*ua73bni7la+bxh83n^#61(cl@#a@z7ym1zb-v!53t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'symphony-garden.herokuapp.com']
 
@@ -37,11 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 	'markdown_deux',
 	'myapp',
 	'tinymce',
-    'django.contrib.sites',
-    'django.contrib.sitemaps',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -79,15 +80,25 @@ WSGI_APPLICATION = 'my_django21_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# DATABASES = {
+    # 'default': {
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'django_db',
+		# 'USER': 'root',
+        # 'PASSWORD': 'Kuga_Muga79',
+    # }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_db',
-		'USER': 'root',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'pet_adopt_drf',
+        'USER': 'postgres',
         'PASSWORD': 'Kuga_Muga79',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -140,5 +151,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 SITE_ID = 1
 
 # Configure Django App for Heroku.
-import django_heroku
-django_heroku.settings(locals())
+# import django_heroku
+# django_heroku.settings(locals())
