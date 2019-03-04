@@ -190,6 +190,25 @@ h5 {
     width: 100%;
 }
 
+.small-gal {
+    display: flex;
+}
+
+.small-img-cont {
+    height: auto;
+    margin-right: 5px;
+	margin-bottom: 12px;
+    width: calc((100% - 15px) / 4);
+}
+
+.small-img-cont:last-of-type {
+    margin-right: 0;
+}
+
+.small-gal img {
+    width: 100%;
+}
+
 .page {
     padding: 5px;
 }
@@ -227,10 +246,6 @@ p.dolls {
 
 .full-width p{
     text-align:justify;
-}
-
-.gallery-adopt {
-
 }
 
 .gal-row {
@@ -429,7 +444,6 @@ textarea {
 	border: 1px solid #fff;
 }
 
-
 .btn-form {
 	-moz-transition: all 400ms cubic-bezier(.165,.84,.44,1);
     -o-transition: all 400ms cubic-bezier(.165,.84,.44,1);
@@ -442,7 +456,6 @@ textarea {
   background-color: #fff;
   color: #ea4c4c;
 }
-
 
 .buy-btn {
 	font-size: 16px;
