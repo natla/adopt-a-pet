@@ -1,18 +1,20 @@
 from django.db import models
-
-# A tuple of binary animal genders
-GENDER = ("M", "F")
-
+from django.urls import reverse
+import re
 
 class Pet(models.Model):
     """
     Pet Model
     Defines the attributes of a pet
     """
-    species = models.CharField(max_length=255, default="Dog")
-    name = models.CharField(max_length=255)
-    breed = models.CharField(max_length=255)
-    gender = models.CharField(max_length=255)
+    GENDER = (
+        ("M", "Boy"),
+        ("F", "Girl"),
+    )
+    species = models.CharField(max_length=30, default="Dog")
+    name = models.CharField(max_length=50, unique=True)
+    breed = models.CharField(max_length=50)
+    gender = models.CharField(max_length=1, choices=GENDER)
     age = models.IntegerField()
 
     def get_name(self):
@@ -21,7 +23,7 @@ class Pet(models.Model):
 
     def get_breed(self):
         """ Get the breed of the pet. """
-        return self.breed.lower()
+        return self.breed
 
     def get_age(self):
         """ Get the age of the pet. """
@@ -29,9 +31,6 @@ class Pet(models.Model):
 
     def get_gender(self):
         """ Get the gender of the pet: M, F or Other. """
-        self.gender = self.gender.capitalize()[0]
-        if self.gender not in GENDER:
-            self.gender = 'Other'
         return self.gender
 
     # This method is not being used yet in the adoption process but it adds pet personality.
@@ -57,3 +56,7 @@ class Pet(models.Model):
                 .format(self.breed.capitalize(),
                         self.name,
                         str(self.age) + " years old")
+
+    def get_absolute_url(self):
+        """Returns the url to access a particular instance of the model."""
+        return reverse('myapp:pet_detail_view', kwargs={'pk': self.pk})

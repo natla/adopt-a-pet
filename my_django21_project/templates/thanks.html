@@ -1,0 +1,33 @@
+{% extends "pets.html" %}
+{% load static %}
+
+{% block title %}{{ pet.name }}{% endblock %}
+
+
+<body>
+<div class="grid">
+    <main>
+        <section class="hero">
+                {% block content %}
+                            <div class="gallery-adopt">
+                    <h1>Thank You</h1>
+                    <div class="gal-row">
+                <div class="gallery">
+                    <div>
+                        <img id="gallery-current" src="{% get_static_prefix %}images/{{pet.name}}.png" alt='{{pet.name}}'>
+                    </div>
+                </div>
+                <div class="text"><h4>Yay! </h4>
+                    <h5>&hearts; You just adopted {{pet.name}}</h5>
+                    <p class="dolls">Someone will contact you soon to finish the adoption process.</p>
+                </div>
+                {% endblock %}
+                    </div>
+                            </div>
+            </section>
+        </section>
+    </main>
+
+</div>
+
+</body>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -14,7 +14,7 @@ def render_pet_adopt_form(request):
     :param request: HTTP request (GET or POST)
     :return: HTTP response (render the form on the page
     """
-    pet_instance = render(request, 'index.html')
+    pet_instance = render(request, 'form.html')
     # If this is a POST request then process the Form data
     if request.method == 'POST':
         # Create a form instance and populate it with data from the request (binding):
@@ -28,12 +28,13 @@ def render_pet_adopt_form(request):
             pet_age = form.cleaned_data['pet_age']
             pet_instance.save()
             # redirect to a new URL:
-        return HttpResponseRedirect('/thanks/')
+            # TODO: Implement the logic and create the redirect page
+        return HttpResponseRedirect('/form/thanks/')
     # If this is a GET (or any other method) create the default form.
     else:
         form = forms.PetAdoptForm()
 
-    return render(request, 'index.html', context={'form': form})
+    return render(request, 'form.html', {'form': form})
 
 
 @api_view(['GET', 'DELETE', 'PUT'])
@@ -72,8 +73,14 @@ def get_delete_update_pet(request, pk):
 def get_post_pets(request):
     """ Get all pets in the database or insert a new pet record
 
-    :param request: HTTP request (GET or POST)
-    :return: HTTP response
+    Example how to insert a valid new record:
+        {
+        "species": "Dog",
+        "name": "Muffin",
+        "breed": "Pomeranian",
+        "gender": "M",
+        "age": 4
+    }
     """
     # get all puppies
     if request.method == 'GET':
@@ -94,3 +101,31 @@ def get_post_pets(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+def pet_detail_view(request, pk):
+    """ Render the detailed page view of a single pet
+
+    :param request: HTTP request (GET or POST)
+    :param pk: Pet primary key
+    :return: HTTP response
+    """
+    pet = get_object_or_404(Pet, pk=pk)
+    return render(request, 'detail.html', {'pet': pet})
+
+def pet_gallery_view(request):
+    """ Render the gallery view of all pets for adoption in the database
+
+    :param request: HTTP request (GET or POST)
+    :return: HTTP response
+    """
+    pets = Pet.objects.all()
+    return render(request, 'pets.html', {'pets': pets})
+
+def pet_adopted(request, pk):
+    """ Render the thank you page of an adopted animal
+
+    :param request: HTTP request (GET or POST)
+    :return: HTTP response
+    """
+    pet = get_object_or_404(Pet, pk=pk)
+    return render(request, 'thanks.html', {'pet': pet})

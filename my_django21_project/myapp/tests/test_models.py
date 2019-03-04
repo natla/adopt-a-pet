@@ -8,17 +8,17 @@ class TestAdoptionService(APITestCase):
     def setUp(self):
         """ Create animals for testing purposes.
         """
-        self.sharo = Pet.objects.create(species="Dog", name='Sharo', breed='unbred', age=5, gender="male")
-        self.lucy = Pet.objects.create(species="Dog", name='Lucy', breed='collie', age=3, gender="Female")
-        self.daisy = Pet.objects.create(species="Dog", name='Daisy', breed='labrador', age=2, gender="fem")
+        self.sharo = Pet.objects.create(species="Dog", name='Sharo', breed='unbred', age=5, gender="M")
+        self.lucy = Pet.objects.create(species="Dog", name='Lucy', breed='collie', age=3, gender="F")
+        self.daisy = Pet.objects.create(species="Dog", name='Daisy', breed='labrador', age=2, gender="F")
         self.rocco = Pet.objects.create(species="Dog", name='Rocco', breed='German Shepherd', age=1, gender="M")
-        self.duke = Pet.objects.create(species="Dog", name='Duke', breed='Doberman', age=4, gender="Male")
-        self.mike = Pet.objects.create(species="Dog", name='Mike', breed='Doberman', age=4, gender="Male")
+        self.duke = Pet.objects.create(species="Dog", name='Duke', breed='Doberman', age=4, gender="M")
+        self.mike = Pet.objects.create(species="Dog", name='Mike', breed='Doberman', age=4, gender="M")
         self.max_ = Pet.objects.create(species="Dog", name='Max', breed='greyhound', age=7, gender="M")
-        self.bobby = Pet.objects.create(species="Dog", name='Bobby', breed='chow chow', age=6, gender='Unknown_gender')
+        self.bobby = Pet.objects.create(species="Dog", name='Bobby', breed='chow chow', age=6, gender='F')
 
         self.maya = Pet.objects.create(species="Cat", name='Maya', breed='Sphynx', age=5, gender="F")
-        self.ruh = Pet.objects.create(species="Cat", name='Ruh', breed='unbred', age=3, gender="male")
+        self.ruh = Pet.objects.create(species="Cat", name='Ruh', breed='unbred', age=3, gender="M")
         self.tiger = Pet.objects.create(species="Cat", name='Tiger', breed='SAVANNAH', age=4, gender="M")
 
         # Create a non-animal object
@@ -51,7 +51,7 @@ class TestAdoptionService(APITestCase):
         """ Test the gender of the animal instances
         """
         self.assertEqual(self.rocco.get_gender(), 'M')
-        self.assertEqual(self.bobby.get_gender(), 'Other')
+        self.assertEqual(self.bobby.get_gender(), 'F')
 
     def test_eat_method(self):
         """ Test the eat method of the animal instances
@@ -67,7 +67,7 @@ class TestAdoptionService(APITestCase):
         cat_adoption_center = AdoptionCenterFactory(self.cat_pool)
 
         # Adopt a dog that exists in the Pool
-        message, result, self.dog_pool = dog_adoption_center.adopt_animal("doberman", 4, "M")
+        message, result, self.dog_pool = dog_adoption_center.adopt_animal("Doberman", 4, "M")
         self.assertIsInstance(result, Pet)
         # Assert that the adopted dog has been removed from the Dog pool:
         self.assertNotIn(result, self.dog_pool)
@@ -86,6 +86,6 @@ class TestAdoptionService(APITestCase):
         message, result, self.cat_pool = cat_adoption_center.get_lucky()
         self.assertIsInstance(result, Pet)
         # Assert that the lucky cat has been removed from the Cat pool
-        #self.assertNotIn(result, self.cat_pool)
+        # self.assertNotIn(result, self.cat_pool)
         # Assert that the user received a proper message
-        self.assertEqual("You adopted a {}." .format(repr(result)), message)
+        self.assertEqual("You adopted a {}.".format(repr(result)), message)

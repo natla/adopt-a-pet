@@ -14,22 +14,11 @@ class GetPuppiesTest(APITestCase):
     """ Test module for GET all pets API """
 
     def setUp(self):
-        self.sharo = Pet.objects.create(species="Dog", name='Sharo', breed='unbred', age=5, gender="male")
-        self.lucy = Pet.objects.create(species="Dog", name='Lucy', breed='collie', age=3, gender="Female")
-        self.daisy = Pet.objects.create(species="Dog", name='Daisy', breed='labrador', age=2, gender="fem")
-        self.rocco = Pet.objects.create(species="Dog", name='Rocco', breed='German Shepherd', age=1, gender="M")
-        self.duke = Pet.objects.create(species="Dog", name='Duke', breed='Doberman', age=4, gender="Male")
-        self.mike = Pet.objects.create(species="Dog", name='Mike', breed='Doberman', age=4, gender="Male")
-        self.max_ = Pet.objects.create(species="Dog", name='Max', breed='greyhound', age=7, gender="M")
-        self.bobby = Pet.objects.create(species="Dog", name='Bobby', breed='chow chow', age=6, gender='Unknown_gender')
-
-        self.maya = Pet.objects.create(species="Cat", name='Maya', breed='Sphynx', age=5, gender="F")
-        self.ruh = Pet.objects.create(species="Cat", name='Ruh', breed='unbred', age=3, gender="male")
-        self.tiger = Pet.objects.create(species="Cat", name='Tiger', breed='SAVANNAH', age=4, gender="M")
+        self.lucy = Pet.objects.create(species="Dog", name='Lucy', breed='collie', age=3, gender="F")
 
     def test_get_all_puppies(self):
         # get API response
-        response = client.get(reverse('get_post_pets'))
+        response = client.get(reverse('myapp:get_post_pets'))
         # get data from db
         pets = Pet.objects.all()
         serializer = PetSerializer(pets, many=True)
@@ -38,7 +27,7 @@ class GetPuppiesTest(APITestCase):
 
     def test_get_valid_single_Pet(self):
         response = client.get(
-            reverse('get_delete_update_pet', kwargs={'pk': self.lucy.pk}))
+            reverse('myapp:get_delete_update_pet', kwargs={'pk': self.lucy.pk}))
         pet = Pet.objects.get(pk=self.lucy.pk)
         serializer = PetSerializer(pet)
         self.assertEqual(response.data, serializer.data)
@@ -46,8 +35,9 @@ class GetPuppiesTest(APITestCase):
 
     def test_get_invalid_single_Pet(self):
         response = client.get(
-            reverse('get_delete_update_pet', kwargs={'pk': 100}))
+            reverse('myapp:get_delete_update_pet', kwargs={'pk': 100}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
 
 class CreateNewPetTest(APITestCase):
     """ Test module for inserting a new Pet """
@@ -57,7 +47,7 @@ class CreateNewPetTest(APITestCase):
             "species": "Dog",
             "name": "Daisy",
             "breed": "Labrador",
-            "gender": "fem",
+            "gender": "F",
             "age": 2
         }
         self.invalid_payload = {
@@ -70,31 +60,30 @@ class CreateNewPetTest(APITestCase):
 
     def test_create_valid_pet(self):
         response = client.post(
-            reverse('get_post_pets'),
+            reverse('myapp:get_post_pets'),
             data=json.dumps(self.valid_payload),
-            content_type='application/json'
-        )
+            content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_create_invalid_pet(self):
         response = client.post(
-            reverse('get_post_pets'),
+            reverse('myapp:get_post_pets'),
             data=json.dumps(self.invalid_payload),
-            content_type='application/json'
-        )
+            content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
 
 class UpdateSinglePetTest(APITestCase):
     """ Test module for updating an existing Pet record """
 
     def setUp(self):
-        self.duke = Pet.objects.create(species="Dog", name='Duke', breed='Doberman', age=4, gender="Male")
+        self.duke = Pet.objects.create(species="Dog", name='Duke', breed='Doberman', age=4, gender="M")
         self.maya = Pet.objects.create(species="Cat", name='Maya', breed='Sphynx', age=5, gender="F")
         self.valid_payload = {
             "species": "Dog",
             "name": "Duke",
             "breed": "Labrador",
-            "gender": "Male",
+            "gender": "M",
             "age": 4
         }
         self.invalid_payload = {
@@ -107,18 +96,18 @@ class UpdateSinglePetTest(APITestCase):
 
     def test_valid_update_pet(self):
         response = client.put(
-            reverse('get_delete_update_pet', kwargs={'pk': self.duke.pk}),
+            reverse('myapp:get_delete_update_pet', kwargs={'pk': self.duke.pk}),
             data=json.dumps(self.valid_payload),
-            content_type='application/json'
-        )
+            content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-    def test_invalid_update_Pet(self):
+    def test_invalid_update_pet(self):
         response = client.put(
-            reverse('get_delete_update_pet', kwargs={'pk': self.maya.pk}),
+            reverse('myapp:get_delete_update_pet', kwargs={'pk': self.maya.pk}),
             data=json.dumps(self.invalid_payload),
             content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
 
 class DeleteSinglePetTest(APITestCase):
     """ Test module for deleting an existing Pet record """
@@ -128,10 +117,10 @@ class DeleteSinglePetTest(APITestCase):
 
     def test_valid_delete_pet(self):
         response = client.delete(
-            reverse('get_delete_update_pet', kwargs={'pk': self.duke.pk}))
+            reverse('myapp:get_delete_update_pet', kwargs={'pk': self.duke.pk}))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_invalid_delete_pet(self):
         response = client.delete(
-            reverse('get_delete_update_pet', kwargs={'pk': 100}))
+            reverse('myapp:get_delete_update_pet', kwargs={'pk': 100}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Adopt a Pet{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700&subset=cyrillic-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+          type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}">
+</head>
+<body>
+
+<div class="grid">
+    <header class="page-header">
+        <h3>Welcome to our pet shelter</h3>
+    </header>
+    <main>
+
+        <section class="page">
+            <div class="full-width">
+                <p>Cupcake ipsum dolor sit. Amet dessert powder cake pastry pie gummi bears oat cake caramels. Tiramisu
+                    pastry icing jelly beans. Apple pie biscuit halvah sugar plum. Brownie cheesecake gummies gummi
+                    bears fruitcake powder. Dessert lollipop danish I love cotton candy gummies dragée icing. Caramels
+                    marshmallow jujubes I love.</p>
+            </div>
+            <hr/>
+
+            <section class="hero">
+                {% block content %}
+                <div class="gallery-adopt">
+                    <h1>Take me Home</h1>
+                    <div class="gal-row">
+                        {% for pet in pets %}
+                        <div class="small-img-cont">
+                            <a class="product-link" href="{{ pet.get_absolute_url }}">
+                                <img src="{% get_static_prefix %}images/{{pet.name}}.png" alt='{{pet.name}}'>
+                                <span>&hearts; {{ pet.name }}</span>
+                                <span>{{ pet.breed }},
+                                    {% if pet.gender == 'M' %} boy, {% elif pet.gender == 'F' %} girl, {% endif %}
+                                    {{ pet.age }} years old</span></a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endblock %}
+            </section>
+
+            <footer>
+                <div class="container">
+                    <section class="share-icons container">
+                        <i title="Facebook" class="fa fa-facebook-square" aria-hidden="true"></i>
+                        <i title="Twitter" class="fa fa-twitter-square" aria-hidden="true"></i>
+                        <i title="LinkedIn" class="fa fa-linkedin-square" aria-hidden="true"></i>
+                        <i title="Pinterest" class="fa fa-pinterest-square" aria-hidden="true"></i>
+                        <i title="Email" class="fa fa-envelope-square" aria-hidden="true"></i>
+                    </section>
+                    <h2>Pet Rescue Center</h2>
+                </div>
+                <p class="right-aligned">&hearts; Live. Love. Bark. Meow &hearts;</p>
+            </footer>
+        </section>
+    </main>
+
+    <footer>
+        <small>&copy; Natalia Malkovska <span class="date">2015</span></small>
+    </footer>
+</div>
+<script src="{% static '/scripts/main.js' %}"></script>
+</body>
+</html>
