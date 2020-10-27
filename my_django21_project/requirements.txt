@@ -1,6 +1,6 @@
 asn1crypto==0.24.0
 cffi==1.12.2
-cryptography==2.6.1
+cryptography==3.2
 dj-database-url==0.5.0
 Django==2.2.13
 django-heroku==0.3.1
