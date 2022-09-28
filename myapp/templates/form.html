@@ -1,9 +1,9 @@
 {% extends "pets.html" %}
-{% load staticfiles %}
+{% load static %}
 
 {% block content %}
 <h1>Choose a Pet</h1>
-<a class="underline--magical" href="/pets/">Fill the form to find your dream pet </a>
+<a class="underline--magical" href="/pets/">Fill out the form to find your dream pet</a>
 <form name="contact" method="post" action="">
     {% csrf_token %}
     <fieldset class="contact-form">

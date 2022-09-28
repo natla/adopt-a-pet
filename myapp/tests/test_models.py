@@ -1,9 +1,9 @@
 from rest_framework.test import APITestCase
+
 from ..models import Pet
 from ..adoption_center import AdoptionCenterFactory
 
 
-# Create your tests here.
 class TestAdoptionService(APITestCase):
     def setUp(self):
         """ Create animals for testing purposes.
@@ -85,7 +85,9 @@ class TestAdoptionService(APITestCase):
         # Adopt a random cat from the Pool
         message, result, self.cat_pool = cat_adoption_center.get_lucky()
         self.assertIsInstance(result, Pet)
+
         # Assert that the lucky cat has been removed from the Cat pool
-        # self.assertNotIn(result, self.cat_pool)
+        self.assertNotIn(result, self.cat_pool)
+
         # Assert that the user received a proper message
-        self.assertEqual("You adopted a {}.".format(repr(result)), message)
+        self.assertEqual(f"You adopted a {repr(result)}.", message)

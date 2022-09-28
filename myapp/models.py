@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-import re
+
 
 class Pet(models.Model):
     """
@@ -30,10 +30,10 @@ class Pet(models.Model):
         return self.age
 
     def get_gender(self):
-        """ Get the gender of the pet: M, F or Other. """
+        """Get the gender of the pet: M, F or Other."""
         return self.gender
 
-    # This method is not being used yet in the adoption process but it adds pet personality.
+    # This method is not being used yet in the adoption process but it adds personality to the pet.
     @staticmethod
     def eat(fav_food):
         """ What is the pet's favorite food?
@@ -41,21 +41,15 @@ class Pet(models.Model):
         :param fav_food: my favorite food
         :return: I like to eat {fav_food}
         """
-        return "I like to eat {}.".format(fav_food)
+        return f"I like to eat {fav_food}."
 
     def __repr__(self):
-        """ User-friendly representation of the pet object. Will be invoked by repr(object)."""
-        if self.get_gender() is not 'Other':
-            return "{} named {} that is {} and a {}" \
-                .format(self.breed.capitalize(),
-                        self.name,
-                        str(self.age) + " years old",
-                        'boy' if self.get_gender() == 'M' else 'girl')
-        else:
-            return "{} named {} that is {}" \
-                .format(self.breed.capitalize(),
-                        self.name,
-                        str(self.age) + " years old")
+        """User-friendly representation of the pet object. Will be invoked by repr(object)."""
+        if self.get_gender() != 'Other':
+            return f"{self.breed.capitalize()} named {self.name} that is " \
+                f"{str(self.age)} years old and a {'boy' if self.get_gender() == 'M' else 'girl'}"
+
+        return f"{self.breed.capitalize()} named {self.name} that is {str(self.age)} years old"
 
     def get_absolute_url(self):
         """Returns the url to access a particular instance of the model."""

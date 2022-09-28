@@ -1,8 +1,10 @@
 import json
-from rest_framework.test import APITestCase
-from rest_framework import status
+
 from django.test import Client
 from django.urls import reverse
+from rest_framework.test import APITestCase
+from rest_framework import status
+
 from ..models import Pet
 from ..serializers import PetSerializer
 

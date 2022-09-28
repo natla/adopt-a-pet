@@ -1,12 +1,17 @@
 from django.conf.urls import url
 from django.urls import path
+
 from . import views
 
 app_name = "myapp"
+
 urlpatterns = [
     path('form/',
          views.render_pet_adopt_form,
          name="adopt_form_page"),
+    path('form/<int:pk>/thanks/',
+         views.pet_adopted,
+         name='pet_adopted_form'),
     url(r'^api/pets/(?P<pk>[0-9]+)$',
         views.get_delete_update_pet,
         name='get_delete_update_pet'),

@@ -22,7 +22,7 @@ class AdoptionCenterFactory:
                         An animal object,
                         Modified adoption pool with adopted animal removed.
         """
-        message = "You adopted a {}.".format(repr(animal))
+        message = f"You adopted a {repr(animal)}."
         # Remove the animal from the pool once it has been adopted:
         self.adoption_pool = self.adoption_pool.exclude(pk=animal.pk)
         return message, animal, self.adoption_pool
@@ -36,9 +36,8 @@ class AdoptionCenterFactory:
         :return tuple: Message about the unsuccessful adoption, A list of animal objects.
         """
         message = "Sorry, we don't have this pet in our shop!" \
-                  " Would you consider adopting one of these cuties instead: {}." \
-            .format(pet_list)
-        return message, pet_list
+                  f" Would you consider adopting one of these cuties instead: {pet_list}."
+        return message, None, pet_list
 
     def adopt_animal(self, breed, age, gender):
         """ Adopt any desired animal by breed, age and gender.
@@ -50,22 +49,39 @@ class AdoptionCenterFactory:
                 tuple: Message, list of additional animals ordered by (breed > age > gender)
                       if the desired animal is not in the Pool.
         """
-        lucky_animal_list = [animal for animal in self.adoption_pool
-                             if animal.get_breed() == breed
-                             and animal.get_age() == age
-                             and animal.get_gender() == gender]
+        # TODO: Improve logic
+        if age is None:
+            lucky_animal_list = [animal for animal in self.adoption_pool
+                                 if animal.get_breed() == breed
+                                 and animal.get_gender() == gender]
+        elif gender == 'Other':
+            lucky_animal_list = [animal for animal in self.adoption_pool
+                                 if animal.get_breed() == breed
+                                 and animal.get_age() == age]
+        elif breed == 'unbred':
+            lucky_animal_list = [animal for animal in self.adoption_pool
+                                 if animal.get_age() == age
+                                 and animal.get_gender() == gender]
+        else:
+            lucky_animal_list = [animal for animal in self.adoption_pool
+                                 if animal.get_breed() == breed
+                                 and animal.get_age() == age
+                                 and animal.get_gender() == gender]
+
+        # Return only one animal to not confuse the user with too many options:
         if len(lucky_animal_list) > 0:
-            # Return only one animal to not confuse the user with too many options:
             lucky_animal = lucky_animal_list[0]
             return self.finish_successful_adoption(lucky_animal)
 
         # If no such animal exists in the Pool,
         # propose an additional list of animals filtered and ordered by: breed > gender > age
-        breed_list = list(filter(lambda x: x.breed == breed, self.adoption_pool))
-        gender_list = list(filter(lambda x: x.gender == gender, self.adoption_pool))
-        age_list = list(filter(lambda x: x.age == age, self.adoption_pool))
+        breed_list = [x for x in self.adoption_pool if x.breed == breed]
+        gender_list = [x for x in self.adoption_pool if x.gender == gender]
+        age_list = [x for x in self.adoption_pool if x.age == age]
+
         # Remove the duplicates from the final list:
         additional_possibilities = list(dict.fromkeys(breed_list + gender_list + age_list))
+
         return self.second_chance(additional_possibilities)
 
     def get_lucky(self):

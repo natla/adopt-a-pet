@@ -308,7 +308,7 @@ p.dolls {
     .text h4 {
         margin-top: 10px;
     }
-	
+
     .share-icons {
         width: 100%;
     }
@@ -375,7 +375,8 @@ form {
   margin: 0 auto 22px auto;
 }
 input,
-textarea {
+textarea,
+select {
   font: 300 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .contact-form label {
@@ -384,13 +385,17 @@ textarea {
 }
 
 .contact-form input,
-.contact-form textarea{
+.contact-form textarea,
+.contact-form select {
   border: 1px solid #c6c9cc;
   border-radius: 5px;
   color: #555;
   display: block;
   margin: 5px 0 24px 0;
   padding: 5px 8px;
+}
+.contact-form input[type='radio'] {
+  margin-bottom: 0;
 }
 .contact-form {
 	border: 0;
