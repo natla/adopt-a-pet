@@ -1,9 +1,8 @@
 """ This module contains the adoption center methods.
 """
-
 import random
 
-from .models import Pet
+# from .models import Pet
 
 
 class AdoptionCenterFactory:

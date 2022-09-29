@@ -25,9 +25,8 @@ RUN python manage.py migrate
 RUN python manage.py collectstatic --noinput
 
 # Install fixtures
-RUN python manage.py loaddata my_django21_project/fixtures/pets.json
+RUN python manage.py loaddata myapp/fixtures/pets.json
 
 EXPOSE 8080
 
-# replace APP_NAME with module name
-CMD ["gunicorn", "--bind", ":8080", "--workers", "2", "my_django21_project.wsgi"]
+CMD ["gunicorn", "--bind", ":8080", "--workers", "2", "config.wsgi"]

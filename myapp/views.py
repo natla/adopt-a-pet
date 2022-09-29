@@ -28,11 +28,8 @@ def render_pet_adopt_form(request):
 
         pet_species = form.cleaned_data['pet']
         pet_breed = form.cleaned_data['pet_breed']
-        print('BREED', pet_breed)
         pet_gender = form.cleaned_data['pet_gender']
-        print('GENDER', pet_gender)
         pet_age = form.cleaned_data['pet_age']
-        print('AGE', pet_age)
 
         found_pets = Pet.objects.filter(species=pet_species) if pet_species != 'Both' else Pet.objects.all()
         adoption_pool = AdoptionCenterFactory(found_pets)
