@@ -20,5 +20,4 @@ The app can be used by Animal Rescue centers, to match a person willing to adopt
 - Observer (to be implemented, see TO DO 2)
 
 # TO DO:
-- TO DO 1: Add a mechanism to get input from the user (e.g. filling in a form with desired pet attributes to filter the results).
 - TO DO 2: A user can subscribe to get a newsletter about the pets available for adoption (e.g. once weekly).
