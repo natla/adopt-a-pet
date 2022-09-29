@@ -1,0 +1,139 @@
+[
+  {
+      "model": "myapp.pet",
+      "fields": {
+          "species": "Dog",
+          "name": "Muffin",
+          "breed": "Pomeranian",
+          "age": 4,
+          "gender": "M"
+      }
+  },
+  {
+      "model": "myapp.pet",
+      "fields": {
+          "species": "Dog",
+          "name": "Lucy",
+          "breed": "collie",
+          "age": 3,
+          "gender": "F"
+      }
+  },
+  {
+      "model": "myapp.pet",
+      "fields": {
+          "species": "Dog",
+          "name": "Rocco",
+          "breed": "German Shepherd",
+          "age": 1,
+          "gender": "M"
+      }
+  },
+  {
+      "model": "myapp.pet",
+      "fields": {
+          "species": "Dog",
+          "name": "Duke",
+          "breed": "Doberman",
+          "age": 4,
+          "gender": "M"
+      }
+  },
+  {
+      "model": "myapp.pet",
+      "fields": {
+          "species": "Dog",
+          "name": "Mike",
+          "breed": "Doberman",
+          "age": 4,
+          "gender": "M"
+      }
+  },
+  {
+      "model": "myapp.pet",
+      "fields": {
+          "species": "Dog",
+          "name": "Bobby",
+          "breed": "chow chow",
+          "age": 6,
+          "gender": "F"
+      }
+  },
+  {
+      "model": "myapp.pet",
+      "fields": {
+          "species": "Cat",
+          "name": "Maya",
+          "breed": "Sphynx",
+          "age": 5,
+          "gender": "F"
+      }
+  },
+  {
+      "model": "myapp.pet",
+      "fields": {
+          "species": "Cat",
+          "name": "Tiger",
+          "breed": "SAVANNAH",
+          "age": 4,
+          "gender": "M"
+      }
+  },
+  {
+      "model": "myapp.pet",
+      "fields": {
+          "species": "Cat",
+          "name": "Elodie",
+          "breed": "Tortico",
+          "age": 2,
+          "gender": "F"
+      }
+  },
+  {
+      "model": "myapp.pet",
+      "fields": {
+          "species": "Cat",
+          "name": "Ruh",
+          "age": 3,
+          "gender": "M"
+      }
+  },
+  {
+      "model": "myapp.pet",
+      "fields": {
+          "species": "Dog",
+          "name": "Sharo",
+          "age": 5,
+          "gender": "M"
+      }
+  },
+  {
+      "model": "myapp.pet",
+      "fields": {
+          "species": "Dog",
+          "name": "Daisy",
+          "breed": "labrador",
+          "age": 2,
+          "gender": "F"
+      }
+  },
+  {
+      "model": "myapp.pet",
+      "fields": {
+          "species": "Dog",
+          "name": "Max",
+          "breed": "greyhound",
+          "age": 7,
+          "gender": "M"
+      }
+  },
+  {
+      "model": "myapp.pet",
+      "fields": {
+          "species": "Cat",
+          "name": "Koshka",
+          "age": 6,
+          "gender": "F"
+      }
+  }
+]

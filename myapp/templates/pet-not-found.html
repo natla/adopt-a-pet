@@ -1,0 +1,37 @@
+{% extends "pets.html" %}
+{% load static %}
+
+{% block title %}{{ pet.name }}{% endblock %}
+
+
+<body>
+  <div class="grid">
+
+    <main>
+      <section class="hero">
+        {% block content %}
+        <div class="gallery-adopt">
+          <h1>Sorry!</h1>
+          <h4>Oops! </h4>
+          <p>&hearts; {{message}}</p>
+          <div class="gal-row">
+            {% for pet in pet_list %}
+            <div class="small-img-cont">
+              <a class="product-link" href="{{ pet.get_absolute_url }}">
+                <img src="{% get_static_prefix %}images/{{pet.name}}.png" alt='{{pet.name}}'>
+                <span>&hearts; {{ pet.name }}</span>
+                <span>{% if pet.breed %}{{ pet.breed.title }},{% endif %}
+                  {% if pet.gender == 'M' %} boy, {% elif pet.gender == 'F' %} girl, {% endif %}
+                  {{ pet.age }} years old
+                </span>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endblock %}
+      </section>
+    </main>
+
+  </div>
+</body>

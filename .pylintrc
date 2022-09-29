@@ -1,0 +1,460 @@
+[MASTER]
+
+# Add files or directories to the blacklist. They should be base names, not paths.
+#
+ignore=
+  .git,
+  node_modules,
+  static,
+  templates,
+  migrations,
+  celerybeat-schedule,
+  db.sqlite3,
+  Procfile
+
+# Add packages to the whitelist.
+#
+extension-pkg-whitelist=pydantic
+
+# Add files or directories matching the regex patterns to the blacklist. The
+# regex matches against base names, not paths.
+#
+ignore-patterns=([^\s]+).log, ([^\s]+).md, ([^\s]+).txt
+
+# Use multiple processes to speed up Pylint. Specifying 0 will auto-detect
+# the number of processors available to use.
+#
+jobs=0
+
+# Load list of plugins for additional checks.
+load-plugins=
+  pylint.extensions.bad_builtin,
+  pylint.extensions.check_elif,
+  pylint.extensions.emptystring,
+  pylint.extensions.overlapping_exceptions,
+  pylint.extensions.while_used
+
+# Pickle collected data for later comparisons.
+persistent=no
+
+
+[MESSAGES CONTROL]
+
+# As a starting point, disable all messages and start to enable them over time
+# as we see fit. This is done in order to allow better control over the linting,
+# to minimize noise and false positives. Furthermore, this file serves as
+# documentation of the linting features we are currently using.
+disable=all
+
+# Below is a good reference for pylint features:
+# https://pylint.readthedocs.io/en/latest/technical_reference/features.html
+enable=
+    # standalone message
+    syntax-error,
+
+    # complete checkers
+    iterable_check,
+    len,
+    logging,
+    stdlib,
+    string,
+    string_constant,
+
+    # checkers from extensions
+    compare-to-empty-string,
+    deprecated_builtins,
+    else_if_used,
+    overlap-except,
+
+    # Specific checkers
+    # For each of the following checkers, note the messages that are
+    # knowingly disabled, and explicitly enable the necessary messages.
+
+
+    # `async` checker
+    #
+    not-async-context-manager,
+    yield-inside-async-function,
+
+    # `basic` checker
+    # disabled:
+    #   invalid-name
+    #   missing-class-docstring
+    #   missing-function-docstring
+    #   missing-module-docstring
+    #   unnecessary-lambda
+    #
+    abstract-class-instantiated,
+    assert-on-string-literal,
+    assert-on-tuple,
+    assign-to-new-keyword,
+    bad-reversed-sequence,
+    blacklisted-name,
+    comparison-with-callable,
+    comparison-with-itself,
+    confusing-with-statement,
+    continue-in-finally,
+    dangerous-default-value,
+    deprecated-lambda,
+    duplicate-argument-name,
+    duplicate-key,
+    empty-docstring,
+    eval-used,
+    exec-used,
+    expression-not-assigned,
+    function-redefined,
+    init-is-generator,
+    invalid-star-assignment-target,
+    literal-comparison,
+    lost-exception,
+    misplaced-comparison-constant,
+    misplaced-format-function,
+    missing-parentheses-for-call-in-test,
+    non-ascii-name,
+    nonexistent-operator,
+    nonlocal-and-global,
+    nonlocal-without-binding,
+    not-in-loop,
+    pointless-statement,
+    pointless-string-statement,
+    redeclared-assigned-name,
+    return-in-init,
+    return-outside-function,
+    self-assigning-variable,
+    singleton-comparison,
+    star-needs-assignment-target,
+    too-many-star-expressions,
+    unidiomatic-typecheck,
+    unnecessary-pass,
+    unreachable,
+    used-prior-global-declaration,
+    useless-else-on-loop,
+    using-constant-test,
+    yield-outside-function,
+
+    # `classes` checker
+    # disabled:
+    #   no-self-use,  # noisy
+    #   protected-access,
+    #
+    abstract-method,
+    access-member-before-definition,
+    arguments-differ,
+    assigning-non-slot,
+    attribute-defined-outside-init,
+    bad-classmethod-argument,
+    bad-staticmethod-argument,
+    class-variable-slots-conflict,
+    duplicate-bases,
+    inconsistent-mro,
+    inherit-non-class,
+    invalid-bytes-returned,
+    invalid-bool-returned,
+    invalid-getnewargs-ex-returned,
+    invalid-getnewargs-returned,
+    invalid-format-returned,
+    invalid-hash-returned,
+    invalid-index-returned,
+    invalid-length-returned,
+    invalid-length-hint-returned,
+    invalid-overridden-method,
+    invalid-repr-returned,
+    invalid-slots,
+    invalid-slots-object,
+    invalid-str-returned,
+    method-hidden,
+    no-classmethod-decorator,
+    no-init,
+    no-method-argument,
+    no-self-argument,
+    no-staticmethod-decorator,
+    non-parent-init-called,
+    property-with-parameters,
+    signature-differs,
+    super-init-not-called,
+    unexpected-special-method-signature,
+    useless-object-inheritance,
+    useless-super-delegation,
+
+    # `design` checker - most checks disabled as they are very noisy
+    # disabled:
+    #   too-few-public-methods,
+    #   too-many-ancestors,
+    #   too-many-arguments,
+    #   too-many-boolean-expressions,
+    #   too-many-instance-attributes,
+    #   too-many-locals,
+    #   too-many-public-methods,
+    #
+    too-many-branches,
+    too-many-return-statements,
+    too-many-statements,
+
+    # `exceptions` checker
+    # disabled:
+    #   broad-except
+    #
+
+    bad-exception-context,
+    bad-except-order,
+    bare-except,
+    binary-op-exception,
+    catching-non-exception,
+    duplicate-except,
+    misplaced-bare-raise,
+    notimplemented-raised,
+    raising-bad-type,
+    raising-format-tuple,
+    raising-non-exception,
+    try-except-raise,
+    wrong-exception-operation,
+
+    # `format` checker
+    # disabled:
+    #   bad-continuation,  # very noisy, can be better handled by flake8
+    #   missing-final-newline,
+    #   trailing-newlines,
+    #
+    bad-indentation,
+    bad-whitespace,
+    line-too-long,
+    lowercase-l-suffix,
+    mixed-indentation,
+    mixed-line-endings,
+    multiple-statements,
+    superfluous-parens,
+    too-many-lines,
+    trailing-whitespace,
+    unexpected-line-ending-format,
+    unnecessary-semicolon,
+
+    # `imports` checker
+    # disabled:
+    #   import-error,  # false positives
+    #   import-outside-toplevel,
+    #   wrong-import-order,
+    #   wrong-import-position,
+    #
+    cyclic-import,
+    deprecated-module,
+    import-self,
+    multiple-imports,
+    preferred-module,
+    relative-beyond-top-level,
+    relative-import,
+    reimported,
+    ungrouped-imports,
+    useless-import-alias,
+    wildcard-import,
+
+    # `newstyle` checker
+    #
+    bad-super-call,
+
+    # `python3` checker - some checks are not enabled as they
+    # can't be emitted when using Python >= 3.0.
+    # disabled:
+    #   no-absolute-import,  # very noisy
+    #
+    apply-builtin,
+    backtick,
+    bad-python3-import,
+    basestring-builtin,
+    buffer-builtin,
+    coerce-builtin,
+    coerce-method,
+    cmp-builtin,
+    cmp-method,
+    comprehension-escape,
+    delslice-method,
+    dict-items-not-iterating,
+    dict-keys-not-iterating,
+    dict-values-not-iterating,
+    div-method,
+    deprecated-itertools-function,
+    deprecated-operator-function,
+    deprecated-string-function,
+    deprecated-sys-function,
+    deprecated-types-field,
+    deprecated-urllib-function,
+    exception-escape,
+    deprecated-str-translate-call,
+    dict-iter-method,
+    dict-view-method,
+    eq-without-hash,
+    exception-message-attribute,
+    execfile-builtin,
+    file-builtin,
+    filter-builtin-not-iterating,
+    getslice-method,
+    hex-method,
+    idiv-method,
+    indexing-exception,
+    input-builtin,
+    intern-builtin,
+    invalid-str-codec,
+    long-builtin,
+    map-builtin-not-iterating,
+    metaclass-assignment,
+    next-method-called,
+    next-method-defined,
+    nonzero-method,
+    oct-method,
+    old-division,
+    old-raise-syntax,
+    parameter-unpacking,
+    print-statement,
+    raising-string,
+    raw_input-builtin,
+    range-builtin-not-iteratin,
+    rdiv-method,
+    reduce-builtin,
+    reload-builtin,
+    round-builtin,
+    setslice-method,
+    standarderror-builtin,
+    sys-max-int,
+    unicode-builtin,
+    unichr-builtin,
+    unpacking-in-except,
+    using-cmp-argument,
+    xrange-builtin,
+    xreadlines-attribute,
+    zip-builtin-not-iterating,
+
+    # `refactoring` checker
+    # disabled:
+    #   consider-using-enumerate,
+    #   inconsistent-return-statements,
+    #
+    chained-comparison,
+    consider-iterating-dictionary,
+    consider-merging-isinstance,
+    consider-swap-variables,
+    consider-using-dict-comprehension,
+    consider-using-get,
+    consider-using-in,
+    consider-using-join,
+    consider-using-set-comprehension,
+    consider-using-sys-exit,
+    consider-using-ternary,
+    len-as-condition,
+    no-else-break,
+    no-else-continue,
+    no-else-raise,
+    no-else-return,
+    redefined-argument-from-local,
+    simplifiable-if-expression,
+    simplifiable-if-statement,
+    simplify-boolean-expression,
+    stop-iteration-return,
+    super-with-arguments,
+    too-many-nested-blocks,
+    unnecessary-comprehension,
+    unneeded-not,
+    useless-return,
+    trailing-comma-tuple,
+
+    # `similarities` checker
+    # disabled:
+    #   duplicate-code,  # noisy, code duplication often is intended
+
+    # `typecheck` checker
+    # disabled:
+    #   c-extension-no-member
+    #   invalid-slice-index
+    #   no-member
+    #   not-callable
+    #   too-many-function-args
+    #   unsubscriptable-object
+    #   unsupported-membership-test
+    #
+    arguments-out-of-order,
+    assignment-from-no-return,
+    assignment-from-none,
+    dict-iter-missing-items,
+    invalid-metaclass,
+    invalid-sequence-index,
+    invalid-unary-operand-type,
+    isinstance-second-argument-not-valid-type,
+    keyword-arg-before-vararg,
+    missing-kwoa,
+    no-value-for-parameter,
+    non-str-assignment-to-dunder-name,
+    not-a-mapping,
+    not-an-iterable,
+    not-context-manager,
+    redundant-keyword-arg,
+    repeated-keyword,
+    unexpected-keyword-arg,
+    unhashable-dict-key,
+    unsupported-assignment-operation,
+    unsupported-binary-operation,
+    unsupported-delete-operation,
+
+    # `variables` checker
+    # disabled:
+    #   global-statement,
+    #   possibly-unused-variable,
+    #   unused-argument,   # noisy and usually unnecessary
+    #   unused-wildcard-import,
+    #
+    cell-var-from-loop,
+    global-at-module-level,
+    global-variable-not-assigned,
+    global-variable-undefined,
+    invalid-all-object,
+    no-name-in-module,
+    # Some of the methods have to redefine built-ins by design,
+    # hence redefined-builtin should be selectively disabled per file
+    redefined-builtin,
+    redefined-outer-name,
+    redefine-in-handler,
+    self-cls-assignment,
+    unbalanced-tuple-unpacking,
+    undefined-all-variable,
+    undefined-loop-variable,
+    undefined-variable,
+    unpacking-non-sequence,
+    unused-import,
+    unused-variable,
+    used-before-assignment,
+
+    # pylint.extensions.while_used plugin
+    while-used,
+
+
+[REPORTS]
+
+output-format=parseable
+
+# Activate the evaluation score.
+score=no
+
+
+[FORMAT]
+
+# Regexp for a line that is allowed to be longer than the limit.
+ignore-long-lines=https?://
+
+# Maximum number of characters on a single line.
+max-line-length=120
+
+# Maximum number of lines in a module
+max-module-lines=1500
+
+
+[LOGGING]
+
+# Logging modules to check that the string format arguments are in logging
+# function parameter format
+logging-modules=logging,logger
+
+
+[TYPECHECK]
+
+# List of members which are set dynamically and missed by pylint inference
+# system, and so shouldn't trigger E1101 when accessed. Python regular
+# expressions are accepted.
+#
+generated-members=objects,DoesNotExist
