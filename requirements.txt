@@ -1,4 +1,4 @@
-cryptography==41.0.0
+cryptography==41.0.3
 dj-database-url==1.0.0
 Django==3.2.19
 django-markdown-deux==1.0.5
