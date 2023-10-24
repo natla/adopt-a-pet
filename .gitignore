@@ -14,7 +14,7 @@ venv/
 
 # DB and static files
 db.sqlite3
-/staticfiles
+staticfiles/
 
 # PyCharm
 .idea/

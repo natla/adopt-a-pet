@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION=3.7
+ARG PYTHON_VERSION=3.8
 
 FROM python:${PYTHON_VERSION}
 
@@ -25,7 +25,7 @@ RUN python manage.py migrate
 RUN python manage.py collectstatic --noinput
 
 # Install fixtures
-RUN python manage.py loaddata myapp/fixtures/pets.json
+# RUN python manage.py loaddata myapp/fixtures/pets.json
 
 EXPOSE 8080
 

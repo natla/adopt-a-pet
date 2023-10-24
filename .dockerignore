@@ -12,9 +12,5 @@ __pycache__/
 myvenv/
 venv/
 
-# DB and static files
-db.sqlite3
-/staticfiles
-
 # PyCharm
 .idea/
